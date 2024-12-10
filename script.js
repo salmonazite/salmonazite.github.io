@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const beastPulseLink = document.getElementById('beast-pulse');
-    const blogPostsLink = document.getElementById('blog-posts');
+    const beastPulseLink = document.getElementById('salmon');
+    const blogPostsLink = document.getElementById('monazite');
     const linksLink = document.getElementById('links');
 
 
     beastPulseLink.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('BEAST PULSE - Coming Soon');
+        alert('Salmon - Coming Soon');
     });
 
     blogPostsLink.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('Blog Posts - Under Construction');
+        alert('Monazite - Under Construction');
     });
 
     linksLink.addEventListener('click', (e) => {
