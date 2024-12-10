@@ -68,11 +68,11 @@ h1 {
 }
 
 a {
-    color: inherit; /* 继承父元素的颜色 */
-    text-decoration: none; /* 移除下划线 */
+    color: inherit; 
+    text-decoration: none; 
 }
 
 a:hover {
-    color: inherit; /* 继承父元素的颜色 */
-    text-decoration: underline; /* 鼠标悬停时显示下划线 */
+    color: inherit; 
+    text-decoration: underline; 
 }
