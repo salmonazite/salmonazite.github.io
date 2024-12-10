@@ -1,0 +1,43 @@
+body {
+    background-color: black;
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px dashed #00ff00;
+}
+header h1 {
+    margin: 0;
+}
+nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+}
+nav a {
+    color: #00ff00;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.content {
+    padding: 20px;
+}
+.blog-post {
+    margin-bottom: 40px;
+}
+.blog-post h2 {
+    margin-bottom: 10px;
+}
+.blog-post .category {
+    font-style: italic;
+}
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 10px;
+    border-top: 1px dashed #00ff00;
+}
