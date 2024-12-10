@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const beastPulseLink = document.getElementById('salmon');
-    const blogPostsLink = document.getElementById('monazite');
+    const salmonLink = document.getElementById('salmon');
+    const monaziteLink = document.getElementById('monazite');
     const linksLink = document.getElementById('links');
 
 
-    beastPulseLink.addEventListener('click', (e) => {
+    salmonLink.addEventListener('click', (e) => {
         e.preventDefault();
         alert('Salmon - Coming Soon');
     });
 
-    blogPostsLink.addEventListener('click', (e) => {
+    monaziteLink.addEventListener('click', (e) => {
         e.preventDefault();
         alert('Monazite - Under Construction');
     });
