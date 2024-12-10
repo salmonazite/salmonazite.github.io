@@ -1,43 +1,67 @@
 body {
-    background-color: black;
-    color: #00ff00;
-    font-family: "Courier New", Courier, monospace;
+    background-color: #121212;
+    color: #00FF66;
+    font-family: 'Courier New', monospace;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
-header {
-    text-align: center;
-    padding: 20px;
-    border-bottom: 1px dashed #00ff00;
-}
-header h1 {
-    margin: 0;
-}
-nav {
+
+.container {
     display: flex;
-    justify-content: flex-end;
-    padding: 10px 20px;
-}
-nav a {
-    color: #00ff00;
-    text-decoration: none;
-    margin-left: 20px;
-}
-.content {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
-.blog-post {
-    margin-bottom: 40px;
+
+.main-content {
+    flex: 3;
+    padding-right: 20px;
+    border-right: 1px solid #00FF66;
 }
-.blog-post h2 {
+
+.sidebar {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.post {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #00FF66;
+    padding-bottom: 20px;
+}
+
+.post-title {
+    font-size: 1.5em;
     margin-bottom: 10px;
 }
-.blog-post .category {
-    font-style: italic;
+
+.post-meta {
+    font-size: 0.8em;
+    margin-bottom: 10px;
 }
-footer {
+
+.sidebar-nav {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    color: #00FF66;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+    color: #00FFAA;
+}
+
+h1 {
     text-align: center;
-    margin-top: 40px;
-    padding: 10px;
-    border-top: 1px dashed #00ff00;
+    font-size: 2.5em;
+    margin-bottom: 30px;
 }
