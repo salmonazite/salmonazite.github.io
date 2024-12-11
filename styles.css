@@ -1,10 +1,10 @@
 body {
-    background-color: #121212;
-    color: #00FF66;
-    font-family: 'Courier New', monospace;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+    background-color: #121212; /* Dark grey */
+    color: #00FF66; /* Light green */
+    font-family: 'Courier New', monospace; /* Monospace font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    line-height: 1.6; /* Increase line height */
 }
 
 .container {
