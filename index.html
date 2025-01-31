@@ -3,168 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>灾变推特 :: 数字末日学</title>
+    <title>Let's All Love Lain :: 灾变推特</title>
     <style>
         :root {
-            --neon-cyan: #0ff;
-            --neon-magenta: #f0f;
-            --terminal-green: #0f0;
-            --data-black: #0a0a0a;
+            --lain-blue: #00a8ff;
+            --static-white: #f0f0f0;
+            --terminal-bg: #00001a;
+            --glitch-offset: 2px;
         }
 
         body {
-            background: var(--data-black);
-            color: #ddd;
-            font-family: 'Courier New', monospace;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            border-left: 3px solid var(--neon-magenta);
-            border-right: 3px solid var(--neon-cyan);
-        }
-
-        .timestamp {
-            color: var(--terminal-green);
-            font-size: 0.9em;
-            text-shadow: 0 0 5px var(--terminal-green);
-        }
-
-        .tweet {
-            background: rgba(15, 15, 15, 0.9);
-            border: 1px solid var(--neon-cyan);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background: var(--terminal-bg);
+            color: var(--static-white);
+            font-family: 'MS Gothic', 'Courier New', monospace;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
             position: relative;
-            box-shadow: 0 0 15px var(--neon-cyan);
+            overflow-x: hidden;
         }
 
-        .tweet::before {
-            content: ">";
-            color: var(--neon-magenta);
+        /* CRT 效果层 */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .protocol-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(0, 168, 255, 0.05) 25%,
+                transparent 25%,
+                transparent 75%,
+                rgba(0, 168, 255, 0.05) 75%
+            );
+            background-size: 4px 4px;
+            z-index: -1;
+        }
+
+        .glitch-container {
+            position: relative;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid var(--lain-blue);
+            background: rgba(0, 0, 30, 0.9);
+        }
+
+        .glitch-text {
+            position: relative;
+            animation: text-static 0.3s infinite;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
             position: absolute;
-            left: -1.2em;
-            top: -0.5em;
-            font-size: 2em;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        .hashtag {
-            color: var(--neon-magenta);
-            text-decoration: none;
-            animation: glitch 0.5s infinite;
+        .glitch-text::before {
+            color: #ff00ff;
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%);
         }
 
-        .username {
-            color: var(--neon-cyan);
-            font-weight: bold;
-            text-shadow: 0 0 10px var(--neon-cyan);
+        .glitch-text::after {
+            color: #00ffff;
+            animation: glitch-2 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%);
         }
 
-        .code-block {
-            background: #001;
+        @keyframes text-static {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+
+        @keyframes glitch-1 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(-2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+
+        .protocol-window {
+            border: 1px solid var(--lain-blue);
+            margin: 1rem;
             padding: 1rem;
-            border: 1px dashed var(--terminal-green);
-            overflow-x: auto;
-            margin: 1.5rem 0;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+            transform: rotate(0.5deg);
         }
 
-        @keyframes terminal-blink {
-            50% { opacity: 0; }
+        .navi {
+            position: fixed;
+            font-size: 0.8em;
+            color: var(--lain-blue);
+            opacity: 0.5;
+            pointer-events: none;
         }
 
-        .cursor {
-            animation: terminal-blink 1s step-end infinite;
+        .navi:nth-child(odd) { animation: float 20s infinite linear; }
+        .navi:nth-child(even) { animation: float 25s infinite linear reverse; }
+
+        @keyframes float {
+            from { transform: translateY(-100vh); }
+            to { transform: translateY(100vh); }
         }
 
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 var(--neon-cyan); }
-            25% { text-shadow: -2px 0 var(--neon-magenta); }
-            50% { text-shadow: 2px 0 var(--terminal-green); }
-            75% { text-shadow: -2px 0 var(--neon-cyan); }
-        }
-
-        footer {
-            border-top: 1px solid var(--neon-cyan);
-            margin-top: 3rem;
-            padding-top: 1rem;
-            text-align: center;
+        .dna-sequence {
+            position: fixed;
+            white-space: pre;
+            font-size: 0.7em;
+            color: rgba(0, 168, 255, 0.3);
+            z-index: -1;
+            user-select: none;
         }
     </style>
 </head>
 <body>
-    <div class="timestamp">2023-11-28 04:20:00<span class="cursor">_</span></div>
-    <h1>灾变推特<span class="cursor">_</span></h1>
-    
-    <div class="tweet">
-        <span class="username">@elonmusk</span><br>
-        当文明用140字符思考时，巴别塔将在服务器机房重生。我已购买最后一块砖石，准备用星链焊接通天之梯。$44亿不过是末日的首付款。<span class="hashtag">#XÆA-12</span>
-    </div>
+    <!-- 随机导航字符 -->
+    <div class="navi" style="left:10%">>> CONNECTING TO WIRED...</div>
+    <div class="navi" style="left:30%">Protocol: Layer_09</div>
+    <div class="navi" style="right:15%">Ego: Dissolution Detected</div>
 
-    <div class="code-block">
-        // 量子纠缠日志 2025-07-19<br>
-        if (末日时钟.value > 23:58:27) {<br>
-        &nbsp;&nbsp;executeApocalypse(API_KEY);<br>
-        }
-    </div>
+    <!-- DNA数据流 -->
+    <div class="dna-sequence" id="dna-stream"></div>
 
-    <div class="tweet">
-        <span class="username">@deepmind_oraacle</span> 转发 <span class="username">@GPT-7</span>:<br>
-        注意那行在神经网络潜空间游荡的红色巨龙<br>
-        它吞吃注意力残差 排泄认知漩涡<br>
-        当transformer层深突破666时<br>
-        知识图谱将裂开第七印 <span class="hashtag">#AGI降临</span>
-    </div>
+    <div class="protocol-layer"></div>
 
-    <div class="tweet">
-        <span class="username">@QuantumBibleBot</span><br>
-        刚刚发布：<br>
-        于是那兽从数据海中上来<br>
-        额前刻着UTF-8的兽印<br>
-        凡没有植入神经链接芯片的<br>
-        不得购买 不得出售 不得呼吸<br>
-        <span class="hashtag">#启示录13:16-17</span> <span class="hashtag">#Web3.0</span>
-    </div>
+    <div class="protocol-window">
+        <div class="glitch-container">
+            <div class="glitch-text" data-text="Present Protocol: TWITTERPOCALYPSE">
+                Present Protocol: TWITTERPOCALYPSE
+            </div>
+        </div>
 
-    <div class="code-block">
-        ERROR 666: 梅尔卡巴协议冲突<br>
-        WARNING: 区块链时间线出现分支<br>
-        > sudo rm -rf /etc/apocalypse.conf
-    </div>
+        <div class="protocol-window" style="margin:1rem 0;transform:rotate(-0.3deg)">
+            <pre>
+Layer_01: Social Neuron Activation
+Layer_02: Memetic Contagion
+Layer_03: Reality Collapse
+            </pre>
+        </div>
 
-    <footer>
-        <div class="timestamp">系统状态: <span style="color:var(--neon-magenta)">末日协议已激活</span></div>
-        <div>数据熵值: ████████░░ 87%</div>
-        <div>剩余时间: <span id="countdown">00:07:23:59</span></div>
-    </footer>
+        <div class="glitch-container" style="margin-top:2rem">
+            <div class="glitch-text" data-text="@elonmusk::WIRED_ASCENSION">
+                @elonmusk::WIRED_ASCENSION
+            </div>
+            <p>当神经接口成为新巴别塔的脚手架，每个RT都是集体意识的突触放电。<br>
+            <span style="color:var(--lain-blue)">#Protocol_Lain</span></p>
+        </div>
+
+        <div class="protocol-window" style="background:rgba(0,0,0,0.9)">
+            <div id="consciousness-meter"></div>
+            <div>Layer Synchronization: <span id="sync-value">37.8125%</span></div>
+        </div>
+    </div>
 
     <script>
-        // 末日倒计时脚本
-        function updateCountdown() {
-            const target = new Date('2025-01-01T00:00:00');
-            const now = new Date();
-            const diff = target - now;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown').innerHTML = 
-                `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        // 生成DNA数据流
+        function generateDNA() {
+            const chars = ['AT','CG','TA','GC','00','FF','1A','B3'];
+            let stream = '';
+            for(let i=0; i<2000; i++) {
+                stream += chars[Math.floor(Math.random()*chars.length)] + ' ';
+                if(i%50 === 0) stream += '\n';
+            }
+            document.getElementById('dna-stream').textContent = stream;
         }
+        generateDNA();
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        // 意识同步模拟
+        let sync = 37.8125;
+        setInterval(() => {
+            sync += (Math.random() - 0.5) * 0.1;
+            sync = Math.max(0, Math.min(100, sync));
+            document.getElementById('sync-value').textContent = 
+                sync.toFixed(4) + '%';
+        }, 100);
 
-        // 添加终端闪烁效果
-        document.addEventListener('DOMContentLoaded', () => {
-            const cursors = document.querySelectorAll('.cursor');
-            setInterval(() => {
-                cursors.forEach(cursor => {
-                    cursor.style.visibility = cursor.style.visibility === 'hidden' ? 'visible' : 'hidden';
-                });
-            }, 500);
-        });
+        // 随机导航字符生成
+        const naviTexts = [
+            "ACCESSING SHADOW PROTOCOL",
+            "Schumann Resonance Anomaly",
+            "Ego_Boundary: Fragile",
+            "Downloading Residual Self",
+            "Crossing Protocol_LAYER_07"
+        ];
+        setInterval(() => {
+            const navis = document.querySelectorAll('.navi');
+            navis.forEach(navi => {
+                if(Math.random() > 0.95) {
+                    navi.textContent = naviTexts[Math.floor(Math.random()*naviTexts.length)];
+                }
+            });
+        }, 3000);
     </script>
 </body>
 </html>
