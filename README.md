@@ -1,3 +1,0 @@
-# salmonazite.github.io
-
-miweby
