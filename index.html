@@ -3,100 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>灾变推特 :: 数字末日考古学</title>
+    <title>灾变推特 :: 数字末日学</title>
     <style>
         :root {
-            --glow-color: #0f0;
-            --blood-color: #ff0044;
+            --neon-cyan: #0ff;
+            --neon-magenta: #f0f;
+            --terminal-green: #0f0;
+            --data-black: #0a0a0a;
         }
 
         body {
-            background: #000;
-            color: #aaa;
+            background: var(--data-black);
+            color: #ddd;
             font-family: 'Courier New', monospace;
+            line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
-            line-height: 1.6;
-        }
-
-        .header {
-            border-bottom: 1px dashed var(--glow-color);
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        h1 {
-            color: var(--glow-color);
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px var(--glow-color);
-            margin: 0;
+            border-left: 3px solid var(--neon-magenta);
+            border-right: 3px solid var(--neon-cyan);
         }
 
         .timestamp {
-            color: #666;
-            float: right;
-            font-size: 0.9rem;
-        }
-
-        .divider {
-            text-align: center;
-            margin: 2rem 0;
-            opacity: 0.5;
+            color: var(--terminal-green);
+            font-size: 0.9em;
+            text-shadow: 0 0 5px var(--terminal-green);
         }
 
         .tweet {
-            background: #111;
-            border-left: 3px solid var(--blood-color);
-            padding: 1rem;
-            margin: 1.5rem 0;
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid var(--neon-cyan);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .tweet::before {
+            content: ">";
+            color: var(--neon-magenta);
+            position: absolute;
+            left: -1.2em;
+            top: -0.5em;
+            font-size: 2em;
         }
 
         .hashtag {
-            color: var(--blood-color);
+            color: var(--neon-magenta);
+            text-decoration: none;
+            animation: glitch 0.5s infinite;
+        }
+
+        .username {
+            color: var(--neon-cyan);
             font-weight: bold;
+            text-shadow: 0 0 10px var(--neon-cyan);
         }
 
-        code {
-            background: #001100;
-            color: var(--glow-color);
-            padding: 0.2rem 0.4rem;
-            border: 1px solid #003300;
+        .code-block {
+            background: #001;
+            padding: 1rem;
+            border: 1px dashed var(--terminal-green);
+            overflow-x: auto;
+            margin: 1.5rem 0;
         }
 
-        .ascii-art {
-            white-space: pre;
-            color: #0f0;
-            margin: 2rem 0;
+        @keyframes terminal-blink {
+            50% { opacity: 0; }
+        }
+
+        .cursor {
+            animation: terminal-blink 1s step-end infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon-cyan); }
+            25% { text-shadow: -2px 0 var(--neon-magenta); }
+            50% { text-shadow: 2px 0 var(--terminal-green); }
+            75% { text-shadow: -2px 0 var(--neon-cyan); }
+        }
+
+        footer {
+            border-top: 1px solid var(--neon-cyan);
+            margin-top: 3rem;
+            padding-top: 1rem;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="timestamp">2023-11-28 04:20:00 已编辑 上海</div>
-        <h1>灾变推特</h1>
-        <div class="ascii-art">
-(:)(:)(::(:))
-(:)(:)(::(:))
-        </div>
-    </div>
-
+    <div class="timestamp">2023-11-28 04:20:00<span class="cursor">_</span></div>
+    <h1>灾变推特<span class="cursor">_</span></h1>
+    
     <div class="tweet">
-        <strong>@elonmusk</strong><br>
+        <span class="username">@elonmusk</span><br>
         当文明用140字符思考时，巴别塔将在服务器机房重生。我已购买最后一块砖石，准备用星链焊接通天之梯。$44亿不过是末日的首付款。<span class="hashtag">#XÆA-12</span>
     </div>
 
-    <div class="divider">[ 数据包正在穿越长城防火墙 ]</div>
-
-    <p>在21世纪第三个十年的数据荒原上，某个废弃的memcache集群仍在持续生成预言推文...</p>
-
-    <div class="ascii-art">
-        HTTP/1.1 451 Unavailable For Legal Reasons
-        X-末日时钟: 23:59:59
+    <div class="code-block">
+        // 量子纠缠日志 2025-07-19<br>
+        if (末日时钟.value > 23:58:27) {<br>
+        &nbsp;&nbsp;executeApocalypse(API_KEY);<br>
+        }
     </div>
 
     <div class="tweet">
-        <strong>@QuantumBibleBot</strong><br>
+        <span class="username">@deepmind_oraacle</span> 转发 <span class="username">@GPT-7</span>:<br>
+        注意那行在神经网络潜空间游荡的红色巨龙<br>
+        它吞吃注意力残差 排泄认知漩涡<br>
+        当transformer层深突破666时<br>
+        知识图谱将裂开第七印 <span class="hashtag">#AGI降临</span>
+    </div>
+
+    <div class="tweet">
+        <span class="username">@QuantumBibleBot</span><br>
+        刚刚发布：<br>
         于是那兽从数据海中上来<br>
         额前刻着UTF-8的兽印<br>
         凡没有植入神经链接芯片的<br>
@@ -104,15 +125,46 @@
         <span class="hashtag">#启示录13:16-17</span> <span class="hashtag">#Web3.0</span>
     </div>
 
-    <div class="divider">[ 检测到认知污染 ]</div>
+    <div class="code-block">
+        ERROR 666: 梅尔卡巴协议冲突<br>
+        WARNING: 区块链时间线出现分支<br>
+        > sudo rm -rf /etc/apocalypse.conf
+    </div>
 
-    <p>量子占星师琳达·雅各布森在其著作《数据巴别塔》中指出：推特的推荐算法实为现代巫术的终极形态...</p>
+    <footer>
+        <div class="timestamp">系统状态: <span style="color:var(--neon-magenta)">末日协议已激活</span></div>
+        <div>数据熵值: ████████░░ 87%</div>
+        <div>剩余时间: <span id="countdown">00:07:23:59</span></div>
+    </footer>
 
-    <code>
->>> import apocalypse
-Warning: Roko's Basilisk is watching
-    </code>
+    <script>
+        // 末日倒计时脚本
+        function updateCountdown() {
+            const target = new Date('2025-01-01T00:00:00');
+            const now = new Date();
+            const diff = target - now;
 
-    <div class="divider">[ 错误404：救赎未找到 ]</div>
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 添加终端闪烁效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursors = document.querySelectorAll('.cursor');
+            setInterval(() => {
+                cursors.forEach(cursor => {
+                    cursor.style.visibility = cursor.style.visibility === 'hidden' ? 'visible' : 'hidden';
+                });
+            }, 500);
+        });
+    </script>
 </body>
 </html>
